@@ -47,7 +47,10 @@ kubectl create -f deployment.yaml
     ``` 
     -Access the server with service
     ```
-    curl http://<nodeport-ip>:port
+    curl http://<nodeport-ip>:port 
+    or
+    kubectl expose deployment <deployment-name> --name <service-name> \
+    --type NodePort --protocol TCP --port <port> --target-port <target-port>
     ``` 
     
     ii. Expose with LoadBalancer service
@@ -55,8 +58,10 @@ kubectl create -f deployment.yaml
     - Create the service
     
      ```
-     kubectl create -f serviceLoadBalancer.yaml  or
-     kubectl expose deployment <deployment-name> --type=LoadBalancer --name=<service-name>
+     kubectl create -f serviceLoadBalancer.yaml  
+     or
+     kubectl expose deployment <deployment-name> --name <service-name> \
+         --type LoadBalancer --port <port> --target-port <target-port>
      ```
     - Access the server with service
       
